@@ -125,7 +125,7 @@ void relatorios(){
 	}while(op!=0);
 
 }
-//-------------------------Sub-Menus-------------------------------------//
+//-------------------------Sub-Menus-Cadastrar------------------------------------//
 
 void cadastrar_medico(){
 	system("clear");
@@ -163,10 +163,42 @@ void cadastrar_paciente(){
 	system("clear");
 	int cod_pac[Max_Pacientes], telefone[15];
 	char nome[50], endereco[100];
+	int op;
+	do{
+		printf("\nNome: ");
+		fgets(nome,sizeof(nome),stdin);
+		printf("\nEndereço: ");
+		fgets(endereco,sizeof(endereco),stdin);
+		printf("\nCodigo de Paciente: ");
+		scanf("%d", &cod_pac[Max_Pacientes]);
+		printf("\nTelefone: ");
+		scanf("%d", &telefone[15]);
+
+		for (int i = 0; i < Max_Pacientes; ++i)
+		{
+			if(paciente[i].ativo == 0)
+			{
+				paciente[i].cod_pac[Max_Pacientes] = cod_pac[Max_Pacientes];
+				paciente[i].telefone[15] = telefone[15];
+				strcpy(paciente[i].nome, nome);
+				strcpy(paciente[i].endereco, endereco);
+				break;
+			}
+		}
+
+		printf("\n1 - Continuar\n0 - Parar\n");
+		scanf("%d", &op);
+		getchar();
+	}while(op!=0);
 }
 void cadastrar_consulta(){
+	system("clear");
+	int num_consulta[Max_Consultas], hora, cod_med, cod_pac;
+	char dia_semana[20];
 
 }
+//-------------------------Sub-Menus-Consultas------------------------------------//
 
 
+//-------------------------Sub-Menus-Relatorio------------------------------------//
 
