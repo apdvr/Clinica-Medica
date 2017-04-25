@@ -43,6 +43,12 @@ void menu(){
 		  case 1:
 		      cadastrar();
 		  break;
+		  case 2:
+		      consultas();
+		  break;
+		  case 3:
+		      relatorios();
+		  break;
 		}
 		
 	}while(op!=0);
@@ -56,15 +62,32 @@ void cadastrar(){
 		printf("\n3 - Cadastrar Consulta\n0 - Voltar\n");
 		scanf("%d", &op);
 		
-		
 	}while(op!=0);
 
 }
 void consultas(){
-  
+  system("clear");
+  int op;
+  do{
+    printf("\nDia da consulta:\n");
+		printf("\n1 - Segunda-Feira\n2 - Terça-Feira\n3 - Quarta-Feira");
+		printf("\n4 - Quinta-Feira\n5 - Sexta-Feira\n0 - Voltar\n");
+		scanf("%d", &op);
+		
+	}while(op!=0);
+
 }
 void relatorios(){
-  
+  system("clear");
+  int op;
+  do{
+    
+		printf("\n1 - Relatorio de Segunda-Feira\n2 - Relatorio de Terça-Feira\n3 - Relatorio de Quarta-Feira");
+		printf("\n4 - Relatorio de Quinta-Feira\n5 - Relatorio de Sexta-Feira\n0 - Voltar\n");
+		scanf("%d", &op);
+		
+	}while(op!=0);
+
 }
 
 
