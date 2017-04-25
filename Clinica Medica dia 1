@@ -54,6 +54,7 @@ void menu(){
 		printf("\n1 - Cadastros\n2 - Consultas");
 		printf("\n3 - Relatorios\n0 - Sair\n");
 		scanf("%d", &op);
+		
 		switch(op){
 		  case 1:
 		      cadastrar();
@@ -80,6 +81,7 @@ void cadastrar(){
 		printf("\n3 - Cadastrar Consulta\n0 - Voltar\n");
 		scanf("%d", &op);
 		getchar();
+		
 		switch(op){
 		  case 1:
 		      cadastrar_medico();
@@ -139,6 +141,7 @@ void cadastrar_medico(){
 		scanf("%d", &cod_med[Max_Medicos]);
 		printf("\nTelefone: ");
 		scanf("%d", &telefone[15]);
+
 		for (int i = 0; i < Max_Medicos; ++i)
 		{
 			if(medico[i].ativo == 0)
@@ -153,6 +156,7 @@ void cadastrar_medico(){
 
 		printf("\n1 - Continuar\n0 - Parar\n");
 		scanf("%d", &op);
+		getchar();
 	}while(op!=0);
 }
 void cadastrar_paciente(){
