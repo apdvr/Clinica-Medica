@@ -1,0 +1,72 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+#define Max_Medicos 2
+#define Max_Pacientes 2
+#define Max_Consultas 2
+typedef struct Medico
+{
+	int cod_med, telefone;
+	char nome[50], endereco[100];
+};
+typedef struct Paciente
+{
+	int cod_pac, telefone;
+	char nome[50], endereco[100];
+};
+typedef struct Consulta
+{
+	int num_consulta, hora, cod_med, cod_pac;
+	char dia_semana[20];
+};
+void menu();
+void cadastrar();
+void consultas();
+void relatorios();
+int main(){
+	struct Medico M[Max_Medicos];
+	struct Paciente P[Max_Pacientes];
+	struct Consulta C[Max_Consultas];
+
+	menu();
+	return 0;
+}
+
+void menu(){
+	system("clear");
+	int op;
+	do{
+		printf("\n1 - Cadastros\n2 - Consultas");
+		printf("\n3 - Relatorios\n0 - Sair\n");
+		scanf("%d", &op);
+		switch(op){
+		  case 1:
+		      cadastrar();
+		  break;
+		}
+		
+	}while(op!=0);
+
+}
+void cadastrar(){
+  system("clear");
+  int op;
+  do{
+		printf("\n1 - Cadastrar Medico\n2 - Cadastrar Paciente");
+		printf("\n3 - Cadastrar Consulta\n0 - Voltar\n");
+		scanf("%d", &op);
+		
+		
+	}while(op!=0);
+
+}
+void consultas(){
+  
+}
+void relatorios(){
+  
+}
+
+
+
+
