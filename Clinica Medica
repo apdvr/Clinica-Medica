@@ -34,7 +34,10 @@ void cadastrar();
 void cadastrar_medico();
 void cadastrar_paciente();
 void cadastrar_consulta();
-void consultas();
+void listas();
+void listar_medico();
+void listar_paciente();
+void listar_consulta();
 void relatorios();
 int main(){
 	struct Medico medico[Max_Medicos];
@@ -51,7 +54,7 @@ void menu(){
 	do{
 		system("clear");
 		printf("\nBem-Vindo\n");
-		printf("\n1 - Cadastros\n2 - Consultas");
+		printf("\n1 - Cadastros\n2 - Listas");
 		printf("\n3 - Relatorios\n0 - Sair\n");
 		scanf("%d", &op);
 		
@@ -60,7 +63,7 @@ void menu(){
 		      cadastrar();
 		  break;
 		  case 2:
-		      consultas();
+		      listas();
 		  break;
 		  case 3:
 		      relatorios();
@@ -98,18 +101,31 @@ void cadastrar(){
 	}while(op!=0);
 
 }
-void consultas(){
+void listas(){
   
-  int op;
+  int li;
   do{
   		system("clear");
-  		printf("\nMenu de Consulta\n");
-    	printf("\n[Dia da consulta]\n");
-		printf("\n1 - Segunda-Feira\n2 - Terça-Feira\n3 - Quarta-Feira");
-		printf("\n4 - Quinta-Feira\n5 - Sexta-Feira\n0 - Voltar\n");
-		scanf("%d", &op);
+  		printf("\nMenu de Listas\n");
+		printf("\n1 - Medicos Cadastrados\n2 - Pacientes Cadastrados");
+		printf("\n3 - Consultas Cadastradas\n0 - Voltar\n");
+		scanf("%d", &li);
+		getchar();
+
+		switch(li){
+		  case 1:
+		      listar_medico();
+		  break;
+		  case 2:
+		      listar_paciente();
+		  break;
+		  case 3:
+		      listar_consulta();
+		  break;
+		}
 		
-	}while(op!=0);
+		
+	}while(li!=0);
 
 }
 void relatorios(){
@@ -150,6 +166,7 @@ void cadastrar_medico(){
 				medico[i].telefone[15] = telefone[15];
 				strcpy(medico[i].nome, nome);
 				strcpy(medico[i].endereco, endereco);
+				medico[i].ativo=1;
 				break;
 			}
 		}
@@ -182,6 +199,7 @@ void cadastrar_paciente(){
 				paciente[i].telefone[15] = telefone[15];
 				strcpy(paciente[i].nome, nome);
 				strcpy(paciente[i].endereco, endereco);
+				paciente[i].ativo=1;
 				break;
 			}
 		}
@@ -197,8 +215,41 @@ void cadastrar_consulta(){
 	char dia_semana[20];
 
 }
-//-------------------------Sub-Menus-Consultas------------------------------------//
+//-------------------------Sub-Menus-Listas------------------------------------//
 
-
+void listar_medico(){
+	system("clear");
+	printf("\n Lista de medicos\n");
+	for (int i = 0; i < Max_Medicos; ++i)
+	{
+		if (medico[i].ativo==1)
+		{
+		
+		printf("\nNome: %s\n", medico[i].nome);
+		printf("\nEndereco: %s\n", medico[i].endereco);
+		printf("\nCodigo: %d\n", medico[i].cod_med[Max_Medicos]);
+		printf("\nTelefone: %d\n", medico[i].telefone[15]);
+	    printf("\n ------------------------------\n");
+	    }
+	}
+}
+void listar_paciente(){
+	system("clear");
+	printf("\n Lista de pacientes\n");
+	for (int i = 0; i < Max_Pacientes; ++i)
+	{
+		if (paciente[i].ativo==1)
+		{
+		
+		printf("\nNome: %s\n", paciente[i].nome);
+		printf("\nEndereco: %s\n", paciente[i].endereco);
+		printf("\nCodigo: %d\n", paciente[i].cod_pac[Max_Pacientes]);
+		printf("\nTelefone: %d\n", paciente[i].telefone[15]);
+	    printf("\n ------------------------------\n");
+	    }
+	}
+}
+void listar_consulta(){
+	system("clear");
+}
 //-------------------------Sub-Menus-Relatorio------------------------------------//
-
