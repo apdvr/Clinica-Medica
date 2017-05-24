@@ -1,0 +1,284 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+#define Max_Medicos 2
+#define Max_Pacientes 2
+#define Max_Consultas 2
+
+struct Medico
+{
+	int cod_med[Max_Medicos], telefone[15];
+	char nome[50], endereco[100];
+	int ativo;
+};
+
+struct Paciente
+{
+	int cod_pac[Max_Pacientes], telefone[15];
+	char nome[50], endereco[100];
+	int ativo;
+};
+
+struct Consulta
+{
+	int num_consulta[Max_Consultas], hora, cod_med, cod_pac;
+	char dia_semana[20];
+};
+
+struct Medico medico[Max_Medicos];
+struct Paciente paciente[Max_Pacientes];
+struct Consulta consulta[Max_Consultas];
+
+void menu();
+void cadastrar();
+void cadastrar_medico();
+void cadastrar_paciente();
+void cadastrar_consulta();
+void listas();
+void listar_medico();
+void listar_paciente();
+void listar_consulta();
+void relatorios();
+int main(){
+	struct Medico medico[Max_Medicos];
+	struct Paciente paciente[Max_Pacientes];
+	struct Consulta consulta[Max_Consultas];
+
+	menu();
+	return 0;
+}
+
+void menu(){
+	
+	int op;
+	do{
+		system("clear");
+		printf("\nBem-Vindo\n");
+		printf("\n1 - Cadastros\n2 - Listas");
+		printf("\n3 - Relatorios\n0 - Sair\n");
+		scanf("%d", &op);
+		
+		switch(op){
+		  case 1:
+		      cadastrar();
+		  break;
+		  case 2:
+		      listas();
+		  break;
+		  case 3:
+		      relatorios();
+		  break;
+		}
+		
+	}while(op!=0);
+
+}
+//------------------------------Menu-------------------------------------//
+void cadastrar(){
+  
+  int op;
+  do{
+  		system("clear");
+  		printf("\nMenu de Cadastro\n");
+		printf("\n1 - Cadastrar Medico\n2 - Cadastrar Paciente");
+		printf("\n3 - Cadastrar Consulta\n0 - Voltar\n");
+		scanf("%d", &op);
+		getchar();
+		
+		switch(op){
+		  case 1:
+		      cadastrar_medico();
+		  break;
+		  case 2:
+		      cadastrar_paciente();
+		  break;
+		  case 3:
+		      cadastrar_consulta();
+		  break;
+		}
+		
+		
+	}while(op!=0);
+
+}
+void listas(){
+  
+  int op;
+  do{
+  		system("clear");
+  		printf("\nMenu de Listas\n");
+		printf("\n1 - Medicos Cadastrados\n2 - Pacientes Cadastrados");
+		printf("\n3 - Consultas Cadastradas\n0 - Voltar\n");
+		scanf("%d", &op);
+		getchar();
+
+		switch(op){
+		  case 1:
+		      listar_medico();
+		  break;
+		  case 2:
+		      listar_paciente();
+		  break;
+		  case 3:
+		      listar_consulta();
+		  break;
+		}
+		
+		
+	}while(op!=0);
+
+}
+void relatorios(){
+  
+  int op;
+  do{
+  		system("clear");
+    	printf("\nMenu de Relatorio\n");
+		printf("\n1 - Relatorio de Segunda-Feira\n2 - Relatorio de Terça-Feira\n3 - Relatorio de Quarta-Feira");
+		printf("\n4 - Relatorio de Quinta-Feira\n5 - Relatorio de Sexta-Feira\n0 - Voltar\n");
+		scanf("%d", &op);
+		
+	}while(op!=0);
+
+}
+//-------------------------Sub-Menus-Cadastrar------------------------------------//
+
+void cadastrar_medico(){
+	system("clear");
+	int cod_med[Max_Medicos], telefone[15];
+	char nome[50], endereco[100];
+	int op;
+	do{
+		printf("\nNome: ");
+		fgets(nome,sizeof(nome),stdin);
+		printf("\nEndereço: ");
+		fgets(endereco,sizeof(endereco),stdin);
+		printf("\nCodigo de Medico: ");
+		scanf("%d", &cod_med[Max_Medicos]);
+		printf("\nTelefone: ");
+		scanf("%d", &telefone[15]);
+
+		for (int i = 0; i < Max_Medicos; ++i)
+		{
+			if(medico[i].ativo == 0)
+			{
+				medico[i].cod_med[Max_Medicos] = cod_med[Max_Medicos];
+				medico[i].telefone[15] = telefone[15];
+				strcpy(medico[i].nome, nome);
+				strcpy(medico[i].endereco, endereco);
+				medico[i].ativo=1;
+				break;
+			}
+		}
+
+		printf("\n1 - Continuar\n0 - Parar\n");
+		scanf("%d", &op);
+		getchar();
+	}while(op!=0);
+}
+void cadastrar_paciente(){
+	system("clear");
+	int cod_pac[Max_Pacientes], telefone[15];
+	char nome[50], endereco[100];
+	int op;
+	do{
+		printf("\nNome: ");
+		fgets(nome,sizeof(nome),stdin);
+		printf("\nEndereço: ");
+		fgets(endereco,sizeof(endereco),stdin);
+		printf("\nCodigo de Paciente: ");
+		scanf("%d", &cod_pac[Max_Pacientes]);
+		printf("\nTelefone: ");
+		scanf("%d", &telefone[15]);
+
+		for (int i = 0; i < Max_Pacientes; ++i)
+		{
+			if(paciente[i].ativo == 0)
+			{
+				paciente[i].cod_pac[Max_Pacientes] = cod_pac[Max_Pacientes];
+				paciente[i].telefone[15] = telefone[15];
+				strcpy(paciente[i].nome, nome);
+				strcpy(paciente[i].endereco, endereco);
+				paciente[i].ativo=1;
+				break;
+			}
+		}
+
+		printf("\n1 - Continuar\n0 - Parar\n");
+		scanf("%d", &op);
+		getchar();
+	}while(op!=0);
+}
+void cadastrar_consulta(){
+	system("clear");
+	int num_consulta[Max_Consultas], hora, cod_med, cod_pac;
+	char dia_semana[20];
+	int op;
+	do{
+/*		printf("\nNumero de consulta: ");
+		scanf("%d", &num_consulta[Max_Consultas]);
+		printf("\nDia da consulta: ");
+		fgets(dia_semana,sizeof(dia_semana),stdin);
+		printf("\nHorario da consulta: ");
+		scanf("%d", &hora);
+		printf("\nCodigo de Medico: ");
+		scanf("%d", &cod_med[Max_Medicos]);
+		printf("\nCodigo de Paciente: ");
+		scanf("%d", &cod_pac[Max_Pacientes]);
+
+		for (int i = 0; i < Max_Consultas; ++i)
+		{
+			if(consulta[i].ativo == 0)
+			{
+				consulta[i].hora = hora;
+				consulta[i].num_consulta[Max_Consultas] = num_consulta[Max_Consultas];
+				consulta[i].cod_med[Max_Medicos] = cod_med[Max_Medicos];
+				consulta[i].cod_pac[Max_Pacientes] = cod_pac[Max_Pacientes];
+				strcpy(consulta[i].dia_semana, dia_semana);
+				consulta[i].ativo=1;
+				break;
+			}
+		}*/
+
+		printf("\n1 - Continuar\n0 - Parar\n");
+		scanf("%d", &op);
+		getchar();
+	}while(op!=0);
+
+}
+//-------------------------Sub-Menus-Listas------------------------------------//
+
+void listar_medico(){
+	system("clear");
+	printf("\n Lista de medicos\n");
+	for (int i = 0; i < Max_Medicos; ++i)
+	{
+		if (medico[i].ativo==1)
+		{
+		printf("\nNome: %s\n", medico[i].nome);
+		printf("\nEndereco: %s\n", medico[i].endereco);
+		printf("\nCodigo: %d\n", medico[i].cod_med[Max_Medicos]);
+		printf("\nTelefone: %d\n", medico[i].telefone[15]);
+	    printf("\n ------------------------------\n");
+	    }
+	}
+}
+void listar_paciente(){
+	system("clear");
+	printf("\n Lista de pacientes\n");
+	for (int i = 0; i < Max_Pacientes; ++i)
+	{
+		if (paciente[i].ativo==1)
+		{
+		printf("\nNome: %s\n", paciente[i].nome);
+		printf("\nEndereco: %s\n", paciente[i].endereco);
+		printf("\nCodigo: %d\n", paciente[i].cod_pac[Max_Pacientes]);
+		printf("\nTelefone: %d\n", paciente[i].telefone[15]);
+	    printf("\n ------------------------------\n");
+	    }
+	}
+}
+void listar_consulta(){
+	system("clear");
+}
+//-------------------------Sub-Menus-Relatorio------------------------------------//
